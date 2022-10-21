@@ -14,6 +14,7 @@ jobs:
 
     env:
       BUILD_CONFIG: 'Release'
+      NUGET_API_KEY: ${{secrets.NUGET_API_KEY}}
 
     runs-on: ubuntu-latest
 
@@ -39,4 +40,4 @@ jobs:
       run: dotnet test /p:Configuration=$env:BUILD_CONFIG --no-build --verbosity normal
       
     - name: Publish
-      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
+      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey $env:NUGET_API_KEY
