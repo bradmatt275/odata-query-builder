@@ -105,7 +105,7 @@ var results = await oDataRequest.ExecuteAsync(async request =>
     var response = await client.GetAsync($"api/v1/data?{request.Query}");
     var data = await response.Content.ReadFromJsonAsync<IEnumerable<ExampleModel>>();
 
-    return data ?? Enumerable.Empty<FinopsProjectActivityResponse>();
+    return data ?? Enumerable.Empty<ExampleModel>();
 });
 ```
 
