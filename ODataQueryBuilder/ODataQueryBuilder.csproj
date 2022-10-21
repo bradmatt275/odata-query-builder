@@ -7,7 +7,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 
 	  <PackageId>OData.Fluent.QueryBuilder</PackageId>
-	  <Version>1.0.0.0</Version>
+	  <Version>1.0.1</Version>
 	  <Authors>bradmatt275</Authors>
 	  <PackageDescription>Simple dotnet OData Query Builder</PackageDescription>
 	  <RepositoryUrl>https://github.com/bradmatt275/odata-query-builder</RepositoryUrl>
