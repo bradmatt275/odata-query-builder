@@ -17,6 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
+    - name: Git Version
+      uses: codacy/git-version@2.5.4
+    
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
@@ -31,9 +34,6 @@ jobs:
     - name: Test
       if: ${{ false }}
       run: dotnet test --no-build --verbosity normal
-      
-    - name: Git Version
-      uses: codacy/git-version@2.5.4
       
     - name: Publish
       run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
