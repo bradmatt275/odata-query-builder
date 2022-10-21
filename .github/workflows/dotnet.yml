@@ -33,7 +33,7 @@ jobs:
       run: dotnet restore
       
     - name: Build
-      run: dotnet build ODataQueryBuilder/ODataQueryBuilder.csproj --configuration $BUILD_CONFIG --no-restore
+      run: dotnet build ODataQueryBuilder/ODataQueryBuilder.csproj --configuration $BUILD_CONFIG -p:Version=$VERSION --no-restore
       
     - name: Test
       if: ${{ false }}
