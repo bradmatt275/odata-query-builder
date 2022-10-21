@@ -5,14 +5,18 @@ name: .NET
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   build:
 
+    env:
+      BUILD_CONFIG: 'Release'
+
     runs-on: ubuntu-latest
+    environment: Production
 
     steps:
     - uses: actions/checkout@v3
@@ -26,7 +30,11 @@ jobs:
       run: dotnet restore
       
     - name: Build
-      run: dotnet build ODataQueryBuilder\ODataQueryBuilder.csproj --no-restore
+      run: dotnet build ODataQueryBuilder/ODataQueryBuilder.csproj --configuration $BUILD_CONFIG --no-restore
       
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      if: ${{ false }}
+      run: dotnet test /p:Configuration=$env:BUILD_CONFIG --no-build --verbosity normal
+      
+    - name: Publish
+      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}

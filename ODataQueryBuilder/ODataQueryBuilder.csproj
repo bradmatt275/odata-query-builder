@@ -4,11 +4,21 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+
+	  <PackageId>OData.Fluent.QueryBuilder</PackageId>
+	  <Version>1.0.2</Version>
+	  <Authors>bradmatt275</Authors>
+	  <PackageDescription>Simple dotnet OData Query Builder</PackageDescription>
+	  <RepositoryUrl>https://github.com/bradmatt275/odata-query-builder</RepositoryUrl>
   </PropertyGroup>
 
-  <ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Deploy\Pipelines\" />
   </ItemGroup>
 
 </Project>
