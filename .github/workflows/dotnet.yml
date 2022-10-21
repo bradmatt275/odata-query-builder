@@ -21,10 +21,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Git Version
-      id: get-version
-      uses: codacy/git-version@2.5.4
-    
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
@@ -35,10 +31,19 @@ jobs:
       
     - name: Build
       run: dotnet build ODataQueryBuilder/ODataQueryBuilder.csproj --configuration $BUILD_CONFIG -p:Version=${{ steps.get-version.outputs.version }} --no-restore
+
+    - name: Bump versions
+      uses: SiqiLu/dotnet-bump-version@2.1.0
+      with:
+          version_files: "ODataQueryBuilder/ODataQueryBuilder.csproj"
+          version_mask: 0.0.1
+          version_overwrite: "*.*.*"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       
     - name: Test
       if: ${{ false }}
       run: dotnet test /p:Configuration=$env:BUILD_CONFIG --no-build --verbosity normal
       
     - name: Publish
+      if: ${{ false }}
       run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey $env:NUGET_API_KEY
