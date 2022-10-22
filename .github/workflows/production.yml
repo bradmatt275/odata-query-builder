@@ -33,4 +33,6 @@ jobs:
       run: dotnet test /p:Configuration=$env:BUILD_CONFIG --no-build --verbosity normal
       
     - name: Publish
-      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
+      run: |
+        dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --name github --username ${{ github.repository_owner }} --password ${{ github.token }} --store-password-in-clear-text
+        dotnet nuget push **/*.nupkg --source github --skip-duplicate
