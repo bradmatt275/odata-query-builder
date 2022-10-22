@@ -3,7 +3,7 @@
 
 Simple fluent dotnet OData query builder.
 
-The goal of this project is to provide an easy way of building OData parameters in a clean way without manually building strings.
+The goal of this project is to provide an easy way of building OData query parameters, without the need to manually concatenate strings.
 
 It is allows building queries for systems that don't necessarily conform to the OData standard. For example, Dynamics 365 OData endpoints.
 
@@ -109,4 +109,4 @@ var results = await oDataRequest.ExecuteAsync(async request =>
 });
 ```
 
-Results will be combined and returned a single collection.
+Results will be combined and returned as a single collection.
