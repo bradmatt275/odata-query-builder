@@ -15,8 +15,8 @@ public class ODataRequest
     }
 
     public string? Filter { get; private set; }
-    public int Top { get; init; }
-    public int Skip { get; init; }
+    public int Top { get; set; }
+    public int Skip { get; set; }
     public string? Select { get; private set; }
     public string? Query { get; private set; }
 
