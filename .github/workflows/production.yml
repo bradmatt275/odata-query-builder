@@ -32,6 +32,12 @@ jobs:
       if: ${{ false }}
       run: dotnet test /p:Configuration=$env:BUILD_CONFIG --no-build --verbosity normal
       
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: build
+        path: /home/runner/work/odata-query-builder/**/*.nupkg
+      
     - name: Publish
       run: |
         dotnet nuget add source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --name github --username ${{ github.repository_owner }} --password ${{ github.token }} --store-password-in-clear-text
